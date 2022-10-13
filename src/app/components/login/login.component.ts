@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
 import { Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup =  new FormGroup({});
 
-  constructor(private formBuilder: FormBuilder, private router: Router ) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -31,8 +32,7 @@ export class LoginComponent implements OnInit {
       this.form.markAllAsTouched();
       return false;
     }
-    console.log(this.form.value)
-    this.router.navigate(['/dashboard']);
+    this.authService.SignIn(this.form.value.email, this.form.value.password)
   }
 
   invalidField(field: string){
