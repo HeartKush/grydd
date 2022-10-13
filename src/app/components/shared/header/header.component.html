@@ -1,0 +1,36 @@
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand">{{enterprise.enterpriseName}}</a>
+      <button 
+        class="btn btn-primary" 
+        type="button" 
+        data-bs-toggle="offcanvas" 
+        data-bs-target="#offcanvasRight" 
+        aria-controls="offcanvasRight"
+    >
+    {{currentUser?.displayName}}
+    </button>
+    </div>
+  </nav>
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page"><span class="badge bg-secondary">{{enterprise.enterpriseName}}</span></li>
+    </ol>
+</nav>
+  <!-- <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/"><span class="badge bg-primary ">Home</span></a></li>
+            <li class="breadcrumb-item active" aria-current="page"><span class="badge bg-secondary">Empresa tal</span></li>
+        </ol>
+    </nav> -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasRightLabel"></h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        {{currentUser?.displayName}}
+    </div>
+  </div>

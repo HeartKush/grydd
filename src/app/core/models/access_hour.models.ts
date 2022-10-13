@@ -1,11 +1,12 @@
 import { Time } from "@angular/common";
-import { Campus } from "./campus.models";
 import { User } from "./user.models";
 
 export class AccesHour {
-        campus?: Campus;
-        startTime?:Time; 
-        endTime?:Time;
-        employee?:User;
-    }
+    id?: number;
+    campus_id?: number;
+    startTime?:Time; 
+    endTime?:Time;
+    user_id?: number;
+    qr_code?: string;
+}
   

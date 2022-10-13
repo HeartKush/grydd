@@ -1,7 +1,98 @@
 <div class="container">
-    <div class="row">
-        <div class="col-12">
-            
+    <!-- HEADER -->
+    <header-component></header-component>
+  <div class="row">
+    <div class="col-12">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#empresaModal">
+        + nueva empresa
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="empresaModal" tabindex="-1" aria-labelledby="empresaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="empresaModalLabel">{{modalTitle}}</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="form" class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label">Nombre Administrador</label>
+                      <input type="text" class="form-control" formControlName="adminUser">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Nit</label>
+                      <input type="number" class="form-control" formControlName="nit">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Nombre de la empresa</label>
+                      <input type="text" class="form-control" formControlName="enterpriseName">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Dirección</label>
+                      <input type="text" class="form-control" formControlName="address" placeholder="1234 Main St">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Ciudad</label>
+                      <input type="text" class="form-control" formControlName="city">
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label">Pais</label>
+                      <select class="form-select">
+                        <option selected>Selecciona pais</option>
+                        <option value="Colombia">Colombia</option>
+                      </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Estado</label>
+                        <select class="form-select">
+                          <option selected>Selecciona estado</option>
+                          <option value="Santander">Santander</option>
+                        </select>
+                      </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Correo Electronico</label>
+                      <input type="text" class="form-control" formControlName="email">
+                      <small *ngIf="invalidField('email')" class="text-danger">
+                        Ingrese un correo valido
+                      </small>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Sitio Web</label>
+                      <input type="text" class="form-control" formControlName="webSite">
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Code</label>
+                        <select class="form-select" formControlName="phoneNumber" >
+                            <option *ngFor="let countryCode of this.countryCodes; let i = index" [value]="countryCode.code">
+                              {{countryCode.dial_code}} {{countryCode.name}}
+                            </option>
+                          </select>
+                      </div>
+                    <div class="col-md-6  justify-content-center">
+                        <label class="form-label">Número teléfonico</label>
+                      <input type="number" class="form-control" formControlName="phoneNumber">
+                      <small *ngIf="invalidField('phoneNumber')" class="text-danger">
+                        Ingrese un número valido
+                      </small>
+                    </div>
+                    <div class="">
+                    </div>
+                  </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button"  data-bs-dismiss="modal" class="btn btn-primary" (click)="newEnterprise()">Crear Empresa</button>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+
+    <div class="col-12">
+      
+    </div>
+  </div>
 </div>
