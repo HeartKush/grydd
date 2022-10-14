@@ -8,6 +8,7 @@ import {
 } from '@angular/fire/compat/firestore';
 import { AccesHour } from '../models/access_hour.models';
 import { Campus } from '../models/campus.models';
+import { elementAt, map } from 'rxjs';
 import { Enterprise } from '../models/enterprise.models';
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,17 @@ export class EnterpriseService {
   getEnterpriseData(email: string){
     return this.afs.collection("enterprises",ref => ref.where("email", '==', email))
     .get();
+  }
+  getEnterprises(){
+    return this.afs.collection<Enterprise>('enterprises').snapshotChanges()
+    .pipe(
+      map(arreglo => arreglo.map(element => {
+        return {
+          id: element.payload.doc.id,
+          ...element.payload.doc.data() as Enterprise
+        }
+      }))
+    )
   }
 
   setEnterpriseData(enterprise: Enterprise) {

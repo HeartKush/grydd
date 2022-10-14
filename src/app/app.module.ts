@@ -13,12 +13,11 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AuthService } from "./core/services/auth.service";
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/shared/header/header.component';
+import { SharedModule } from './components/shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminComponent,
-    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +29,8 @@ import { HeaderComponent } from './components/shared/header/header.component';
     AngularFireDatabaseModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

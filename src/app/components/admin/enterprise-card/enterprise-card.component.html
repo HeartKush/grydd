@@ -1,0 +1,30 @@
+<div class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+      <div *ngFor="let enterprise of enterprises; let i=index" class="card shadow col col-6 me-1 ms-1 mt-2" style="max-width: 580px;">
+        <div class="row g-0">
+          <div class="col-md-4 d-flex justify-content-center align-items-center">
+            <img src="assets/images/logo-naranja.png" class="img-fluid rounded-start w-75 mx-auto" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title text-secondary">{{enterprise.enterpriseName}}</h5>
+              <p class="card-text text-secondary"><span class="fw-bold">Administrador: </span>{{enterprise.adminUser}}</p>
+              <p class="card-text text-secondary"><span class="fw-bold">Nit: </span>{{enterprise.nit}}</p>
+              <p class="card-text text-secondary"><span class="fw-bold">Sitio web: </span>{{enterprise.webSite}}</p>
+              <p class="card-text text-secondary"><span class="fw-bold">Teléfono: </span>{{enterprise.countryCode}} {{enterprise.phoneNumber}}</p>
+              <p class="card-text text-secondary"><span class="fw-bold">Correo: </span>{{enterprise.email}}</p>
+              <p class="card-text text-secondary"><span class="fw-bold">Ubicación: </span>{{enterprise.country}},{{enterprise.city}},{{enterprise.state}}</p>
+              <p class="card-text text-secondary"><span class="fw-bold">Dirección: </span>{{enterprise.address}}</p>
+              
+              <button class="btn btn-sm btn-info text-white shadow-lg">Ver sedes </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+</div>
+
+
+
+
