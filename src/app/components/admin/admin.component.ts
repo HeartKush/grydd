@@ -6,6 +6,7 @@ import { CountryCode } from 'src/app/core/models/country_code.models';
 import { CodesService } from 'src/app/core/services/codes.service';
 import { EnterpriseService } from 'src/app/core/services/enterprise.service';
 import { UserAuth } from 'src/app/core/models/user_auth.models';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-admin',
@@ -49,7 +50,8 @@ export class AdminComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private codesService: CodesService,
-    private enterpriseService: EnterpriseService
+    private enterpriseService: EnterpriseService,
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -96,25 +98,22 @@ export class AdminComponent implements OnInit {
     }
     console.log('valid');
     this.selectedEnterprise = this.form.value;
-    this.enterpriseService.setEnterpriseData(this.form.value).then(
-      (any) => {
-        this.selectedEnterprise = {
-          adminUser: '',
-          nit: undefined,
-          enterpriseName: '',
-          address: '',
-          countryCode: '',
-          phoneNumber: undefined,
-          email: '',
-          webSite: '',
-          country: '',
-          state: '',
-          city: '',
+    this.enterpriseService.setEnterpriseData(this.form.value);
+    this.selectedEnterprise = {
+      adminUser: '',
+      nit: undefined,
+      enterpriseName: '',
+      address: '',
+      countryCode: '',
+      phoneNumber: undefined,
+      email: '',
+      webSite: '',
+      country: '',
+      state: '',
+      city: '',
 
-        };
-      }
-    )
-
+    };
+    this.form.reset();
 
   }
 

@@ -5,9 +5,7 @@ export class User {
     address?:string;
     phoneNumber?:number;
     email?:string;
-    location?:{
-      country?:string;
-      state?:string;
-      city?:string;
-    }
+    country?:string;
+    state?:string;
+    city?:string;
   }

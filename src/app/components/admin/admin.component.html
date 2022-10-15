@@ -1,10 +1,52 @@
 <div class="container">
-    <!-- HEADER -->
-    <header-component></header-component>
+  <!-- HEADER -->
+  <header-component *ngIf="!this.authService.isLoggedIn"></header-component>
   <div class="row">
     <div class="col-12">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-info text-white shadow-sm" data-bs-toggle="modal" data-bs-target="#empresaModal">
+
+      <div class="card w-100 shadow">
+        <div class="card-body">
+          
+          <div class="row text-center justify-content-between">
+            <div class="col border-end">
+              <p class="card-text text-secondary fw-bold">Administrador</p>
+              <p>{{mainEnterprise.adminUser}}</p>
+            </div>
+            <div class="col border-end">
+              <p class="card-text text-secondary fw-bold">Nit</p>
+              <p>{{mainEnterprise.nit}}</p>
+            </div>
+            <div class="col border-end">
+              <p class="card-text text-secondary fw-bold">Sitio Web</p>
+              <p>{{mainEnterprise.webSite}}</p>
+            </div>
+            <div class="col border-end">
+              <p class="card-text text-secondary fw-bold">Teléfono</p>
+              <p>{{mainEnterprise.countryCode}} {{mainEnterprise.phoneNumber}}</p>
+            </div>
+            <div class="col border-end">
+              <p class="card-text text-secondary fw-bold">correo</p>
+              <p>{{mainEnterprise.email}}</p>
+            </div>
+            <div class="col border-end">
+              <p class="card-text text-secondary fw-bold">Ubicación</p>
+              <p>{{mainEnterprise.country}},{{mainEnterprise.city}},{{mainEnterprise.state}}</p>
+            </div>
+            <div class="col">
+              <p class="card-text text-secondary fw-bold">Dirección</p>
+              <p>{{mainEnterprise.address}}</p>
+            </div>
+          
+          </div>
+          
+        
+
+        </div>
+      </div>
+
+      <button *ngIf="this.mainEnterprise.email == 'andresparra0905@gmail.com'" type="button" class="btn btn-info text-white shadow-sm mt-3" data-bs-toggle="modal"
+        data-bs-target="#empresaModal">
         + nueva empresa
       </button>
 
@@ -17,79 +59,80 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="form" class="row g-3">
-                    <div class="col-md-6">
-                      <label class="form-label">Nombre Administrador</label>
-                      <input type="text" class="form-control" formControlName="adminUser">
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label">Nit</label>
-                      <input type="number" class="form-control" formControlName="nit">
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label">Nombre de la empresa</label>
-                      <input type="text" class="form-control" formControlName="enterpriseName">
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label">Dirección</label>
-                      <input type="text" class="form-control" formControlName="address" placeholder="1234 Main St">
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label">Ciudad</label>
-                      <input type="text" class="form-control" formControlName="city">
-                    </div>
-                    <div class="col-md-3">
-                      <label class="form-label" >Pais</label>
-                      <select class="form-select" formControlName="country">
-                        <option value="">Selecciona pais</option>
-                        <option>Colombia</option>
-                      </select>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Estado</label>
-                        <select class="form-select"  formControlName="state">
-                          <option value="">Selecciona estado</option>
-                          <option >Santander</option>
-                        </select>
-                      </div>
-                    <div class="col-md-6">
-                      <label class="form-label">Correo Electronico</label>
-                      <input type="text" class="form-control" formControlName="email">
-                      <small *ngIf="invalidField('email')" class="text-danger">
-                        Ingrese un correo valido
-                      </small>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label">Sitio Web</label>
-                      <input type="text" class="form-control" formControlName="webSite">
-                    </div>
-                    <div class="col-md-2">
-                        <label class="form-label">Code</label>
-                        <select class="form-select" formControlName="countryCode" >
-                            <option *ngFor="let countryCode of this.countryCodes" [value]="countryCode.dial_code">
-                              {{countryCode.dial_code}} {{countryCode.name}}
-                            </option>
-                          </select>
-                      </div>
-                    <div class="col-md-6  justify-content-center">
-                        <label class="form-label">Número teléfonico</label>
-                      <input type="number" class="form-control" formControlName="phoneNumber">
-                      <small *ngIf="invalidField('phoneNumber')" class="text-danger">
-                        Ingrese un número valido
-                      </small>
-                    </div>
-                    <div class="">
-                    </div>
-                  </form>
+              <form [formGroup]="form" class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Nombre Administrador</label>
+                  <input type="text" class="form-control" formControlName="adminUser">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Nit</label>
+                  <input type="number" class="form-control" formControlName="nit">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Nombre de la empresa</label>
+                  <input type="text" class="form-control" formControlName="enterpriseName">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Dirección</label>
+                  <input type="text" class="form-control" formControlName="address" placeholder="1234 Main St">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Ciudad</label>
+                  <input type="text" class="form-control" formControlName="city">
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">Pais</label>
+                  <select class="form-select" formControlName="country">
+                    <option value="">Selecciona pais</option>
+                    <option>Colombia</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">Estado</label>
+                  <select class="form-select" formControlName="state">
+                    <option value="">Selecciona estado</option>
+                    <option>Santander</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Correo Electronico</label>
+                  <input type="text" class="form-control" formControlName="email">
+                  <small *ngIf="invalidField('email')" class="text-danger">
+                    Ingrese un correo valido
+                  </small>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Sitio Web</label>
+                  <input type="text" class="form-control" formControlName="webSite">
+                </div>
+                <div class="col-md-2">
+                  <label class="form-label">Code</label>
+                  <select class="form-select" formControlName="countryCode">
+                    <option *ngFor="let countryCode of this.countryCodes" [value]="countryCode.dial_code">
+                      {{countryCode.dial_code}} {{countryCode.name}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-md-6  justify-content-center">
+                  <label class="form-label">Número teléfonico</label>
+                  <input type="number" class="form-control" formControlName="phoneNumber">
+                  <small *ngIf="invalidField('phoneNumber')" class="text-danger">
+                    Ingrese un número valido
+                  </small>
+                </div>
+                <div class="">
+                </div>
+              </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-              <button type="button"  data-bs-dismiss="modal" class="btn btn-primary" (click)="newEnterprise()">Crear Empresa</button>
+              <button type="button" data-bs-dismiss="modal" class="btn btn-primary" (click)="newEnterprise()">Crear
+                Empresa</button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <app-enterprise-card></app-enterprise-card>
+  <app-enterprise-card *ngIf="this.mainEnterprise.email == 'andresparra0905@gmail.com'"></app-enterprise-card>
 </div>

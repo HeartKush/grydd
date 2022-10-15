@@ -9,10 +9,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 
+
 @NgModule({
   declarations: [
     AdminComponent,
-    EnterpriseCardComponent
+    EnterpriseCardComponent,
     
   ],
   imports: [

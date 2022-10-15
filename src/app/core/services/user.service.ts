@@ -14,22 +14,25 @@ export class UserService {
   constructor(public afs: AngularFirestore) { }
 
   getUser(email:string){
-    return this.afs.collection("users",ref => ref.where("email", '==', email))
+    return this.afs.collection("userData",ref => ref.where("email", '==', email))
     .get();
   }
 
   setUser(user:User){
+    console.log('creando admin user');
     const UsersRef: AngularFirestoreDocument<any> = this.afs.doc(
-      `enterprises/${user.email}`
+      `userData/${user.email}`
     );
     return UsersRef.set(user, {
       merge: true,
-    });
+    }).catch((error)=>{
+      console.log('error :', error)
+    });;
   }
 
   deleteUser(user:User){
     const UsersRef: AngularFirestoreDocument<any> = this.afs.doc(
-      `enterprises/${user.email}`
+      `userData/${user.email}`
     );
     return UsersRef.delete()
   }

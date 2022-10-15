@@ -9,15 +9,15 @@ import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { AdminComponent } from './components/admin/admin.component';
 import { AuthService } from "./core/services/auth.service";
 import { HttpClientModule } from '@angular/common/http';
-import { HeaderComponent } from './components/shared/header/header.component';
 import { SharedModule } from './components/shared/shared.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+  
   ],
   imports: [
     BrowserModule,

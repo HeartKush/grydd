@@ -28,34 +28,7 @@ export class AuthService {
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe((user) => {
       if (user) {
-        this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user')!);
-        this.enterpriseService.getEnterpriseData(this.userData.email)
-        .subscribe((data:any)=>{
-          if (!data.empty){
-            this.enterprise = data.docs[0].data()
-            localStorage.setItem('enterprise', JSON.stringify(data.docs[0].data()))
-          }
-        })
-        this.userService.getUser(this.userData.email).subscribe((res:any)=>{
-          if(!res.empty){
-            console.log('usuario encontrado')
-            localStorage.setItem('userData', JSON.stringify(res.docs[0].data()))
-          }else{
-            console.log('usuario creado')
-            let user: User = {
-              name : this.enterprise.adminUser.split(' ') ? this.enterprise.adminUser.split(' ')[0] : 'Admin ' + this.enterprise.enterpriseName,
-              lastName :this.enterprise.adminUser.split(' ').length,
-              enterpriseName: this.enterprise.enterpriseName,
-              address: this.enterprise.address,
-              phoneNumber: this.enterprise.phoneNumber,
-              email: this.enterprise.email,
-              location: this.enterprise.location
-            }
-          }
-        })
-        this.router.navigate(['dashboard']);
+        this.setSessionData(user);
       } else {
         localStorage.setItem('user', 'null');
         localStorage.setItem('enterprise', 'null');
@@ -70,12 +43,14 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.SetUserData(result.user);
-
+        
+        console.log(result.user);
         this.afAuth.authState.subscribe((user) => {
           if (user) {
-            this.router.navigate(['dashboard']);
+            this.setSessionData(user);
           }
         });
+        window.location.reload();
       })
       .catch((error) => {
         window.alert(error.message);
@@ -119,5 +94,41 @@ export class AuthService {
       localStorage.removeItem('enterprise');
       this.router.navigate(['/login']);
     });
+  }
+
+  setSessionData(user:any){
+    this.userData = user;
+    localStorage.setItem('user', JSON.stringify(this.userData));
+    JSON.parse(localStorage.getItem('user')!);
+    this.enterpriseService.getEnterpriseData(this.userData.email)
+    .subscribe((data:any)=>{
+      if (!data.empty){
+        this.enterprise = data.docs[0].data()
+        localStorage.setItem('enterprise', JSON.stringify(data.docs[0].data()))
+      }
+    })
+    this.userService.getUser(this.userData.email).subscribe((res:any)=>{
+      if(!res.empty){
+        console.log('usuario encontrado')
+        localStorage.setItem('userData', JSON.stringify(res.docs[0].data()))
+        this.router.navigate(['dashboard']);
+      }else{
+        console.log('usuario creado')
+        console.log(this.enterprise);
+        /* let user: User = {
+          name : this.enterprise.adminUser.split(' ') ? this.enterprise.adminUser.split(' ')[0] : 'Admin ' + this.enterprise.enterpriseName,
+          lastName :this.enterprise.adminUser.split(' ').length,
+          enterpriseName: this.enterprise.enterpriseName,
+          address: this.enterprise.address,
+          phoneNumber: this.enterprise.phoneNumber,
+          email: this.enterprise.email,
+          country: this.enterprise.country,
+          state: this.enterprise.state,
+          city: this.enterprise.city
+        } */
+        this.router.navigate(['dashboard']);
+      }
+    })
+    
   }
 }

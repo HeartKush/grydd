@@ -10,12 +10,14 @@ import { AccesHour } from '../models/access_hour.models';
 import { Campus } from '../models/campus.models';
 import { elementAt, map } from 'rxjs';
 import { Enterprise } from '../models/enterprise.models';
+import { UserService } from './user.service';
+import { User } from '../models/user.models';
 @Injectable({
   providedIn: 'root'
 })
 export class EnterpriseService {
 
-  constructor(public afs: AngularFirestore, ) { }
+  constructor(public afs: AngularFirestore, public userService: UserService ) { }
 
   getEnterpriseData(email: string){
     return this.afs.collection("enterprises",ref => ref.where("email", '==', email))
@@ -37,9 +39,32 @@ export class EnterpriseService {
     const EnterpriseRef: AngularFirestoreDocument<any> = this.afs.doc(
       `enterprises/${enterprise.nit}`
     );
-
-    return EnterpriseRef.set(enterprise, {
-      merge: true,
+    const adminName : string = enterprise.adminUser?.split(' ')[0] || '';
+    let adminLastName : string =  '';
+    if ((enterprise.adminUser?.split(' ').length || []) >= 1){
+        enterprise.adminUser?.split(' ')[1] || '';
+    }
+    const userAdmin : User = {
+      name:enterprise.adminUser,
+      lastName:adminName,
+      enterpriseName:adminLastName,
+      address: enterprise.address,
+      phoneNumber: enterprise.phoneNumber,
+      email: enterprise.email,
+      country: enterprise.country,
+      state: enterprise.state,
+      city: enterprise.city,
+    }
+    this.userService.setUser(userAdmin).then((data:any)=>{
+      return EnterpriseRef.set(enterprise, {
+        merge: true,
+      });
+    }).catch((error)=>{
+      console.log('error setentErprisData: ',error );
+    }).finally(()=>{
+      return EnterpriseRef.set(enterprise, {
+        merge: true,
+      });
     });
   }
 
