@@ -1,1 +1,9 @@
-<p>campus works!</p>
+<div class="container" *ngIf="this.enterprise.email == 'andresparra0905@gmail.com'">
+  <div class="row">
+    <header-component></header-component>
+    <app-header-banner></app-header-banner>
+    <app-campus-card></app-campus-card>
+  </div>
+</div>
+
+<app-campus-card *ngIf="this.enterprise.email != 'andresparra0905@gmail.com'"></app-campus-card>

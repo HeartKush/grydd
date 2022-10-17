@@ -23,6 +23,10 @@ export class EnterpriseService {
     return this.afs.collection("enterprises",ref => ref.where("email", '==', email))
     .get();
   }
+  getEnterpriseByName(name: string){
+    return this.afs.collection("enterprises",ref => ref.where("enterpriseName", '==', name))
+    .get();
+  }
   getEnterprises(){
     return this.afs.collection<Enterprise>('enterprises').snapshotChanges()
     .pipe(

@@ -32,11 +32,11 @@
   </div>
   <div class="offcanvas-body p-0">
     <h5 class="text-secondary text-center mb-5 bg-info text-white">{{enterprise.adminUser}}</h5>
-    <div class="col-12 d-flex justify-content-center mt-5">
+    <div class="col-12 d-flex justify-content-center mt-5" *ngIf="enterprise.email == 'andresparra0905@gmail.com'">
       <ul class="dropdown-menu d-block mx-auto w-75 shadow text-center">
         <li><span class="dropdown-item-text fw-bold text-secondary">Empresas Registradas</span></li>
         <li *ngFor="let enterprise of enterprises;">
-          <a class="dropdown-item text-secondary" href="/dashboard">{{enterprise.enterpriseName}}</a>
+          <a class="dropdown-item text-secondary" href="/sedes">{{enterprise.enterpriseName}}</a>
         </li>
 
       </ul>

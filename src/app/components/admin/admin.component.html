@@ -5,45 +5,7 @@
     <div class="col-12">
       <!-- Button trigger modal -->
 
-      <div class="card w-100 shadow">
-        <div class="card-body">
-          
-          <div class="row text-center justify-content-between">
-            <div class="col border-end">
-              <p class="card-text text-secondary fw-bold">Administrador</p>
-              <p>{{mainEnterprise.adminUser}}</p>
-            </div>
-            <div class="col border-end">
-              <p class="card-text text-secondary fw-bold">Nit</p>
-              <p>{{mainEnterprise.nit}}</p>
-            </div>
-            <div class="col border-end">
-              <p class="card-text text-secondary fw-bold">Sitio Web</p>
-              <p>{{mainEnterprise.webSite}}</p>
-            </div>
-            <div class="col border-end">
-              <p class="card-text text-secondary fw-bold">Teléfono</p>
-              <p>{{mainEnterprise.countryCode}} {{mainEnterprise.phoneNumber}}</p>
-            </div>
-            <div class="col border-end">
-              <p class="card-text text-secondary fw-bold">correo</p>
-              <p>{{mainEnterprise.email}}</p>
-            </div>
-            <div class="col border-end">
-              <p class="card-text text-secondary fw-bold">Ubicación</p>
-              <p>{{mainEnterprise.country}},{{mainEnterprise.city}},{{mainEnterprise.state}}</p>
-            </div>
-            <div class="col">
-              <p class="card-text text-secondary fw-bold">Dirección</p>
-              <p>{{mainEnterprise.address}}</p>
-            </div>
-          
-          </div>
-          
-        
-
-        </div>
-      </div>
+      <app-header-banner></app-header-banner>
 
       <button *ngIf="this.mainEnterprise.email == 'andresparra0905@gmail.com'" type="button" class="btn btn-info text-white shadow-sm mt-3" data-bs-toggle="modal"
         data-bs-target="#empresaModal">
@@ -135,4 +97,5 @@
     </div>
   </div>
   <app-enterprise-card *ngIf="this.mainEnterprise.email == 'andresparra0905@gmail.com'"></app-enterprise-card>
+  <app-campus *ngIf="this.mainEnterprise.email != 'andresparra0905@gmail.com'" ></app-campus>
 </div>

@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Enterprise } from 'src/app/core/models/enterprise.models';
@@ -26,6 +27,10 @@ export class EnterpriseCardComponent implements OnInit {
     this._enterpriseService.getEnterprises().subscribe(data=>{
       this.enterprises = data;
     })
+  }
+
+  verSedes(enterpriseName:any){
+    this.router.navigate(['/sedes']);
   }
 
 }

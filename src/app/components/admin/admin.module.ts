@@ -5,6 +5,8 @@ import { EnterpriseCardComponent } from './enterprise-card/enterprise-card.compo
 import { SharedModule } from '../shared/shared.module';
 import { AdminComponent } from './admin.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CampusModule } from '../campus/campus.module'
+
 
 
 
@@ -22,6 +24,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
+    CampusModule
   ]
 })
 export class AdminModule { }
