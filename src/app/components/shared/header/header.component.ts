@@ -16,20 +16,12 @@ import { EnterpriseService } from 'src/app/core/services/enterprise.service';
 export class HeaderComponent implements OnInit {
   currentUserAuth: UserAuth | any = JSON.parse(localStorage.getItem('user')!);
   enterprise: Enterprise | any = JSON.parse(localStorage.getItem('enterprise')!);
-  currentUser: User | any = null;
+  currentUser: User | any = JSON.parse(localStorage.getItem('userData')!);
   enterprises: Enterprise [] = [];
   constructor(public afs: AngularFirestore, private _userService: UserService, private _authService: AuthService, public enterpriseService:EnterpriseService) { }
 
   ngOnInit(): void {
     this.getEnterprises();
-    this._userService.getUser(this.currentUserAuth.email).subscribe(data => {
-      if (!data.empty) {
-        this.currentUser = data.docs[0].data();
-        console.log('nombre: ', this.currentUserAuth);
-        console.log(this.currentUser);
-      }
-    })
-
   }
 
   getEnterprises(){

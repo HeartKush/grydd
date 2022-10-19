@@ -7,6 +7,7 @@ import { CodesService } from 'src/app/core/services/codes.service';
 import { EnterpriseService } from 'src/app/core/services/enterprise.service';
 import { UserAuth } from 'src/app/core/models/user_auth.models';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { User } from 'src/app/core/models/user.models';
 
 @Component({
   selector: 'app-admin',
@@ -15,7 +16,8 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class AdminComponent implements OnInit {
   countryCodes: CountryCode[] = [];
-  modalTitle: string = 'nueva empresa';
+  modalTitle: string = 'Nueva Empresa';
+  currentUser: User | any = JSON.parse(localStorage.getItem('userData')!);
   selectedEnterprise: Enterprise = {
     adminUser: '',
     nit: undefined,
@@ -80,7 +82,6 @@ export class AdminComponent implements OnInit {
       country: [this.selectedEnterprise.country, Validators.required],
       state: [this.selectedEnterprise.state, Validators.required],
       city: [this.selectedEnterprise.city, Validators.required],
-
     })
   }
 

@@ -29,8 +29,13 @@ export class EnterpriseCardComponent implements OnInit {
     })
   }
 
-  verSedes(enterpriseName:any){
-    this.router.navigate(['/sedes']);
+  verSedes(enterpriseNit:any){
+    let mainEnterprise = this.enterprises.find(e => e.nit == enterpriseNit)
+    console.log('mainEnterprise', mainEnterprise)
+    if (mainEnterprise){
+      localStorage.setItem('enterprise', JSON.stringify(mainEnterprise))
+      this.router.navigate(['/sedes']);
+    }
   }
 
 }

@@ -79,28 +79,6 @@ export class EnterpriseService {
     return EnterpriseRef.delete()
   }
 
-  getCampusData(id: number){
-    return this.afs.collection("campus",ref => ref.where("id", '==', id)
-    .where("state","==",true))
-    .get();
-  }
-
-
-  setCampusData(campus: Campus){
-    const CampusRef: AngularFirestoreDocument<any> = this.afs.doc(
-      `campus/${campus.id}`
-    );
-    return CampusRef.set(campus, {
-      merge: true,
-    });
-  }
-
-  deleteCampus(campus:Campus){
-    const CampusRef: AngularFirestoreDocument<any> = this.afs.doc(
-      `campus/${campus.id}`
-    );
-    return CampusRef.delete()
-  }
 
   getAccessHour(qr_code: string){ 
     let actual_date: Date = new Date();

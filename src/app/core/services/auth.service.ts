@@ -111,11 +111,11 @@ export class AuthService {
       if(!res.empty){
         console.log('usuario encontrado')
         localStorage.setItem('userData', JSON.stringify(res.docs[0].data()))
-        this.router.navigate(['dashboard']);
+        
       }else{
         console.log('usuario creado')
         console.log(this.enterprise);
-        /* let user: User = {
+        let user: User = {
           name : this.enterprise.adminUser.split(' ') ? this.enterprise.adminUser.split(' ')[0] : 'Admin ' + this.enterprise.enterpriseName,
           lastName :this.enterprise.adminUser.split(' ').length,
           enterpriseName: this.enterprise.enterpriseName,
@@ -125,8 +125,15 @@ export class AuthService {
           country: this.enterprise.country,
           state: this.enterprise.state,
           city: this.enterprise.city
-        } */
+        }
+        localStorage.setItem('userData', JSON.stringify(user))
+        this.userService.setUser(user)
+
+      }
+      if(this.userData.email == 'andresparra0905@gmail.com'){
         this.router.navigate(['dashboard']);
+      }else{
+        this.router.navigate(['sedes']);
       }
     })
     

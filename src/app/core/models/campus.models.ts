@@ -5,7 +5,7 @@ export class Campus {
   name?: string;
   address?: string;
   email?: string;
-  enterpriseName?: string;
+  enterprise?: number;
   latitute?: string;
   longitude?: string;
   state?: boolean;

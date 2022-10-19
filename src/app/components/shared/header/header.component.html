@@ -1,13 +1,13 @@
 <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
-    <a *ngIf="this.enterprise.email == 'andresparra0905@gmail.com'" class="navbar-brand">Bienvenido SuperUsuario!</a>
-    <a *ngIf="this.enterprise.email != 'andresparra0905@gmail.com'" class="navbar-brand">Bienvenido a
+    <a *ngIf="currentUser.email == 'andresparra0905@gmail.com'" class="navbar-brand">Bienvenido SuperUsuario!</a>
+    <a *ngIf="currentUser.email != 'andresparra0905@gmail.com'" class="navbar-brand">Bienvenido a
       {{enterprise.enterpriseName}}!</a>
 
     <button class="btn btn-primary shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
       aria-controls="offcanvasRight">
 
-      {{enterprise.adminUser}}
+      {{currentUser.name}}
     </button>
   </div>
 </nav>
@@ -31,12 +31,12 @@
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body p-0">
-    <h5 class="text-secondary text-center mb-5 bg-info text-white">{{enterprise.adminUser}}</h5>
-    <div class="col-12 d-flex justify-content-center mt-5" *ngIf="enterprise.email == 'andresparra0905@gmail.com'">
-      <ul class="dropdown-menu d-block mx-auto w-75 shadow text-center">
-        <li><span class="dropdown-item-text fw-bold text-secondary">Empresas Registradas</span></li>
+    <h5 class="text-secondary text-center mb-5 bg-info text-white">{{currentUser.name}}</h5>
+    <div class="col-12 d-flex justify-content-center mt-5" *ngIf="currentUser.email == 'andresparra0905@gmail.com'">
+      <ul class="flex-column nav d-block mx-auto w-75 shadow text-center">
+        <li class="nav-item"><span class="dropdown-item-text fw-bold text-secondary">Empresas Registradas</span></li>
         <li *ngFor="let enterprise of enterprises;">
-          <a class="dropdown-item text-secondary" href="/sedes">{{enterprise.enterpriseName}}</a>
+          <a class="nav-link dropdown-item text-secondary" href="/sedes">{{enterprise.enterpriseName}}</a>
         </li>
 
       </ul>

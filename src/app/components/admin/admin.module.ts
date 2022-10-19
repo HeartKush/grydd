@@ -8,10 +8,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CampusModule } from '../campus/campus.module'
 
 
-
-
-
-
 @NgModule({
   declarations: [
     AdminComponent,

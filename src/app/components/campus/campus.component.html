@@ -1,9 +1,61 @@
-<div class="container" *ngIf="this.enterprise.email == 'andresparra0905@gmail.com'">
+<div class="container">
   <div class="row">
     <header-component></header-component>
-    <app-header-banner></app-header-banner>
+    <div class="col-12">
+      <app-header-banner></app-header-banner>
+      <button type="button" class="btn btn-info text-white shadow-sm mt-3" data-bs-toggle="offcanvas"
+        data-bs-target="#enterpriseCanvas" aria-controls="offcanvasBottom">
+        + nueva sede
+      </button>
+    </div>
+    <!-- Modal -->
+    <div class="offcanvas offcanvas-bottom h-50 " tabindex="-1" id="enterpriseCanvas"
+      aria-labelledby="offcanvasBottomLabel">
+      <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title px-5 fw-bold " id="offcanvasBottomLabel">Nombre Sede</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body px-5">
+        <form [formGroup]="form" class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Nombre de la Sede</label>
+            <input type="text" class="form-control" formControlName="name">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Dirección</label>
+            <input type="text" class="form-control" formControlName="address">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Correo Electrónico</label>
+            <input type="email" class="form-control" formControlName="email">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Empresa</label>
+            <input type="text" class="form-control" formControlName="enterprise" placeholder="1234 Main St">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Latitud</label>
+            <input type="text" class="form-control" formControlName="latitude">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Longitud</label>
+            <input type="text" class="form-control" formControlName="longitude">
+          </div>
+
+          <div class="col-12 mt-1">
+            <div class="row mt-5 p-3 align-items-center justify-content-center justify-content-center">
+              <div class="col-12 col-lg-2 col-xl-2 col-xxl-2  mt-2">
+                <button type="button" class="btn btn-danger w-100" data-bs-dismiss="offcanvas">Cerrar</button>
+              </div>
+              <div class="col-12 col-lg-2 col-xl-2 col-xxl-2  mt-2">
+                <button type="button" data-bs-dismiss="offcanvas" class="btn btn-primary w-100">Crear
+                  Empresa</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
     <app-campus-card></app-campus-card>
   </div>
 </div>
-
-<app-campus-card *ngIf="this.enterprise.email != 'andresparra0905@gmail.com'"></app-campus-card>

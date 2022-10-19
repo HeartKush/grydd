@@ -6,6 +6,7 @@ import { CampusComponent } from './campus.component';
 import { AccessHoursComponent } from './access-hours/access-hours.component';
 import { SharedModule } from '../shared/shared.module';
 import { CampusCardComponent } from './campus-card/campus-card.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AdminModule } from '../admin/admin.module';
 
 
@@ -18,7 +19,9 @@ import { AdminModule } from '../admin/admin.module';
   imports: [
     CommonModule,
     CampusRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
     CampusComponent
